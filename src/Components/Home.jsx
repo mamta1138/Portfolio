@@ -18,7 +18,7 @@ const Home = () => {
           name: 'Mamta Ghimire',
           title: 'Data Scientist',
           description:
-            "I’m a full-stack developer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I’m focused on building responsive full-stack web applications."
+          "I'm a data scientist skilled in uncovering insights from complex datasets using statistical analysis and machine learning techniques. Experienced in driving data-driven decision-making and innovation."
         };
         
         // Setting the data and updating loading state
