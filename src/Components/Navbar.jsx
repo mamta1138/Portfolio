@@ -1,31 +1,139 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  FaBars,
+  FaTimes,
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+  FaLinkedinIn,
+} from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+import { BsFillPersonLinesFill } from 'react-icons/bs';
+import Logo from '../assets/logo.png';
+import { Link } from 'react-scroll';
 
-function Navbar() {
+const Navbar = () => {
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
+
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-gradient-to-r from-teal-500 to-teal-600 p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span className="font-semibold text-xl tracking-tight">My Portfolio</span>
+    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'>
+      <div>
+        <img src={Logo} alt='Logo Image' style={{ width: '200px' }} />
       </div>
-      <div className="block lg:hidden">
-        <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-          <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-        </button>
-      </div>
-      <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto">
-        <div className="text-sm lg:flex-grow">
-          <a href="/projects" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-            Projects
-          </a>
-          <a href="/about" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+
+      {/* menu */}
+      <ul className='hidden md:flex'>
+        <li>
+          <Link to='home' smooth={true} duration={500}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to='about' smooth={true} duration={500}>
             About
-          </a>
-          <a href="/contact" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+          </Link>
+        </li>
+        <li>
+          <Link to='skills' smooth={true} duration={500}>
+            Skills
+          </Link>
+        </li>
+        <li>
+          <Link to='work' smooth={true} duration={500}>
+            Work
+          </Link>
+        </li>
+        <li>
+          <Link to='contact' smooth={true} duration={500}>
             Contact
-          </a>
-        </div>
+          </Link>
+        </li>
+      </ul>
+
+      {/* Hamburger */}
+      <div onClick={handleClick} className='md:hidden z-10'>
+        {!nav ? <FaBars /> : <FaTimes />}
       </div>
-    </nav>
+
+      {/* Mobile menu */}
+      <ul
+        className={
+          !nav
+            ? 'hidden'
+            : 'absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'
+        }
+      >
+        <li className='py-6 text-4xl'>
+          <Link onClick={handleClick} to='home' smooth={true} duration={500}>
+            Home
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          {' '}
+          <Link onClick={handleClick} to='about' smooth={true} duration={500}>
+            About
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          {' '}
+          <Link onClick={handleClick} to='skills' smooth={true} duration={500}>
+            Skills
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          {' '}
+          <Link onClick={handleClick} to='work' smooth={true} duration={500}>
+            Work
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          {' '}
+          <Link onClick={handleClick} to='contact' smooth={true} duration={500}>
+            Contact
+          </Link>
+        </li>
+      </ul>
+
+      {/* Social icons */}
+      <div className='hidden lg:flex fixed flex-col top-[35%] left-0'>
+        <ul>
+          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-blue-600'>
+            <a
+              className='flex justify-between items-center w-full text-gray-300'
+              href='/'
+            >
+              Linkedin <FaLinkedin size={30} />
+            </a>
+          </li>
+          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#333333]'>
+            <a
+              className='flex justify-between items-center w-full text-gray-300'
+              href='/'
+            >
+              Github <FaGithub size={30} />
+            </a>
+          </li>
+          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fc2b0]'>
+            <a
+              className='flex justify-between items-center w-full text-gray-300'
+              href='/'
+            >
+              Email <HiOutlineMail size={30} />
+            </a>
+          </li>
+          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69]'>
+            <a
+              className='flex justify-between items-center w-full text-gray-300'
+              href='/'
+            >
+              Resume <BsFillPersonLinesFill size={30} />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
-}
+};
 
 export default Navbar;
