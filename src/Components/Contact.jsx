@@ -15,30 +15,11 @@ const Contact = () => {
   };
 
   // Function to handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      // Send form data to the specified endpoint
-      const response = await fetch("https://getform.io/f/a699a1b2-f225-434e-b317-1fbbde8e006c", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
-
-      // Handle response as needed
-      if (response.ok) {
-        console.log("Form submitted successfully!");
-        // Clear form fields after successful submission
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        console.error("Form submission failed.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
+    console.log(formData);
+    // Optionally, you can clear the form fields after logging the data
+    // setFormData({ name: '', email: '', message: '' });
   };
 
   return (
